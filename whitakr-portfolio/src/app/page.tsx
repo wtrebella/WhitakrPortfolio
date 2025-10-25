@@ -27,6 +27,11 @@ export default function Home() {
                 subtitle="A Game About Piecing Together Things"
                 description="In Polymer, piece together things into things"
                 link="https://www.youtube.com/watch?v=dQw4w9WgXcQ"/>
+
+            <ProjectModule
+                title="Did The Bears Win?"
+                description="A fun little page I made when learning web dev"
+                link="https://didthebearswin.com"/>
         </div>
 	);
 }

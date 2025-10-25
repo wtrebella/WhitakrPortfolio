@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getLinkProps } from "@/lib/url";
 
 export default function ProjectModule(
-    {title, subtitle, description, link}: {title: string, subtitle: string, description: string, link?: string}) {
+    {title, subtitle, description, link}: {title: string, subtitle?: string, description: string, link?: string}) {
 	const trimmedLink = link?.trim();
 	const linkProps = getLinkProps(trimmedLink);
 	return (
@@ -11,7 +11,9 @@ export default function ProjectModule(
             <div className="flex flex-col p-4 min-w-[30dvh]">
                 <div className="flex flex-col items-start justify-center p-4">
                     <h1 className="text-2xl">{title}</h1>
-                    <h2 className="text-xl text-gray-400">{subtitle}</h2>
+                    {subtitle ? (
+                        <h2 className="text-xl text-gray-400">{subtitle}</h2>
+                    ) : null}
                 </div>
                 <div className="flex flex-col items-start justify-center p-4">
                     <p className="text-md text">{description}</p>
