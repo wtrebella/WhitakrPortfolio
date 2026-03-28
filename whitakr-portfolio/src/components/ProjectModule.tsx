@@ -107,15 +107,15 @@ export default function ProjectModule(
     const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
 
 	return (
-        <div className="mt-8 flex w-full max-w-2xl flex-row items-start gap-6 rounded-lg bg-neutral-800 p-4 shadow-md"
+        <div className="mt-8 flex w-full max-w-2xl drop-shadow-xs drop-shadow-gray-300 flex-row items-start gap-6 rounded-[4.8rem] bg-neutral-100 p-6 shadow-md"
              onClick={() => setIsOpen(!isOpen)}>
-            <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-md md:w-40">
+            <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[3.5rem] md:w-40">
                 <Image
                     src={image}
                     alt={`${title} image`}
                     fill
                     sizes="(max-width: 768px) 8rem, 10rem"
-                    className="object-contain p-3"
+                    className="object-cover"
                 />
             </div>
             
