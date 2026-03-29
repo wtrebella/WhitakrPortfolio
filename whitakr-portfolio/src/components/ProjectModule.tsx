@@ -3,7 +3,7 @@
 import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {useMemo, useState} from "react";
+import {useRef, useMemo, useState} from "react";
 import {getLinkProps, getYouTubeEmbedUrl} from "@/lib/url";
 
 type ModuleLink = {
@@ -25,7 +25,8 @@ type ProjectModuleProps = {
     subtitle?: string;
     role?: string;
     description: string;
-    image: string;
+    icon: string;
+    image?: string;
     links?: ModuleLink[];
 }
 
@@ -100,23 +101,27 @@ export default function ProjectModule(
         role,
         description,
         image,
+        icon,
         links = []
     }: ProjectModuleProps)
 {
     const [isOpen, setIsOpen] = useState(false);
-
+    const moduleRef = useRef<HTMLDivElement | null>(null);
     const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
 
     return (
-        <div className="relative mt-6 w-full max-w-2xl overflow-hidden rounded-[3.5rem] bg-emerald-50 p-6 drop-shadow-xs shadow-md"
-             onClick={() => setIsOpen(!isOpen)}>
+        <div className="relative mt-6 w-full max-w-2xl overflow-hidden rounded-[3.7rem] bg-emerald-50 p-7 drop-shadow-xs shadow-md scroll-mb-24"
+             onClick={() => setIsOpen(!isOpen)}
+             ref={moduleRef}
+        >
             <div className="flex w-full min-w-0 flex-col items-start justify-center">
                 <div className="flex w-full min-w-0 flex-row items-start gap-6">
                     <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[2.5rem]">
                         <Image
-                            src={image}
-                            alt={`${title} image`}
+                            src={icon}
+                            alt={`${title} icon`}
                             fill
+                            priority
                             sizes="(max-width: 768px) 8rem, 10rem"
                             className="object-cover"
                         />
@@ -136,15 +141,39 @@ export default function ProjectModule(
                 <AnimatePresence initial={false}>
                     {isOpen && (
                         <motion.div
-                            initial={{height: 0, opacity: 0}}
-                            animate={{height: "auto", opacity: 1}}
-                            exit={{height: 0, opacity: 0}}
-                            transition={{duration: 0.25, ease: "easeInOut"}}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
                             className="w-full overflow-hidden"
+                            onAnimationComplete={() => {
+                                if (!isOpen || !moduleRef.current) return;
+
+                                const rect = moduleRef.current.getBoundingClientRect();
+                                const bottomPadding = 96;
+                                const overflow = rect.bottom - (window.innerHeight - bottomPadding);
+
+                                if (overflow > 0) {
+                                    window.scrollBy({
+                                        top: overflow,
+                                        behavior: "smooth"
+                                    });
+                                }
+                            }}
                         >
                             <div className="mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-12">
                                 <Description description={description}/>
                                 <ModuleLinks links={normalizedLinks}/>
+                                {image && (
+                                    <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl">
+                                        <Image
+                                            src={image}
+                                            alt={title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 42rem"
+                                            className="object-contain"
+                                        />
+                                    </div>                                )}
                             </div>
                         </motion.div>
                     )}
