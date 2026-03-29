@@ -52,7 +52,7 @@ export default function Home() {
                     subtitle="Fight the sickness!"
                     role="Designer, Engineer, Artist, Sound Designer, Composer, Writer"
                     description="In Remedy Rush, it's you vs. the germs in this revitalizing adventure game of curious remedies. After coming down with a pesky sickness, you'll delve deep into the body and navigate through an endless maze of cells while utilizing a variety of unconventional remedies to ward of the germs. Each with game-changing side effects, the experimental remedies such as sushi, a tennis ball, and a teddy bear, act as a key defense to fight the germs lurking in the body. The more days your remedy survives, the longer you fend off the sickness!"
-                    image="/icon-remedyrush.png"
+                    image="/icon-remedyRush.png"
                     links={[
                         {
                             href: "https://www.youtube.com/watch?v=MmA99J150d8",
