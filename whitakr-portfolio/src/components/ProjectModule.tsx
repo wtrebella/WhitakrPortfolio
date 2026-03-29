@@ -110,7 +110,20 @@ export default function ProjectModule(
     const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
 
     return (
-        <div className="relative mt-6 w-full max-w-2xl overflow-hidden rounded-[3.7rem] bg-emerald-50 p-7 drop-shadow-xs shadow-md scroll-mb-24"
+        <div className="
+            relative
+            mt-6
+            w-full
+            max-w-2xl
+            overflow-hidden
+            rounded-[3.7rem]
+            p-7
+            drop-shadow-xs
+            shadow-md
+            scroll-mb-24
+            bg-linear-to-t
+            from-(--project-module-bg)
+            to-(--project-module-bg-2)"
              onClick={() => setIsOpen(!isOpen)}
              ref={moduleRef}
         >

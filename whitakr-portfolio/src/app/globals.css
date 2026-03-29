@@ -2,10 +2,14 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-    --background: #555;
-    --foreground: #171717;
-    --svg-bg: #8ab5b3;
-    --svg-stroke: #a3c6c6;
+    --background: #000;
+    --foreground: #000;
+    --svg-bg: #333D79;
+    --svg-bg-2: #333D79;
+    --svg-stroke: #444E8A;
+    --svg-stroke-2: #444E8A;
+    --project-module-bg: #eee;
+    --project-module-bg-2: #fff;
 }
 
 .page-bg {
