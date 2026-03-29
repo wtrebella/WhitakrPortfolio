@@ -1,5 +1,6 @@
 'use client'
 
+import {AnimatePresence, motion} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import {useMemo, useState} from "react";
@@ -54,7 +55,7 @@ function Description({ description }: { description: string }) {
     return (
         <>
             {lines.map((line, index) => line
-                ? (<p key={index} className="text-md">{line}</p>)
+                ? (<p key={index} className="text-md wrap-break-word">{line}</p>)
                 : (<div key={index} className="h-4" aria-hidden="true"/>)
             )}
         </>
@@ -67,12 +68,12 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
     return (
         <>
             {links.map((link, index) => (
-                <div key={`${link.href}-${index}`} className="mt-2 flex w-full flex-col gap-2">
+                <div key={`${link.href}-${index}`} className="mt-2 flex w-full min-w-0 flex-col gap-2">
                     {link.youTubeEmbedUrl ? (
                         <iframe
                             src={link.youTubeEmbedUrl}
                             title={link.label}
-                            className="h-56 w-full rounded-md"
+                            className="block aspect-video w-full rounded-md"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
@@ -80,7 +81,7 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
                     ) : (
                         <Link
                             href={link.href}
-                            className="text-blue-500 hover:underline"
+                            className="break-all text-blue-500 hover:underline"
                             {...link.linkProps}
                         >
                             {link.label}
@@ -94,49 +95,71 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
 
 export default function ProjectModule(
     {
-        title, 
-        subtitle, 
-        role, 
-        description, 
-        image, 
+        title,
+        subtitle,
+        role,
+        description,
+        image,
         links = []
-    }: ProjectModuleProps) 
+    }: ProjectModuleProps)
 {
-	const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
 
-	return (
-        <div className="mt-8 flex w-full max-w-2xl drop-shadow-xs drop-shadow-gray-300 flex-row items-start gap-6 rounded-[4.8rem] bg-neutral-100 p-6 shadow-md"
+    return (
+        <div className="relative mt-6 w-full max-w-2xl overflow-hidden rounded-[3.5rem] bg-emerald-50 p-6 drop-shadow-xs shadow-md"
              onClick={() => setIsOpen(!isOpen)}>
-            <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[3.5rem] md:w-40">
-                <Image
-                    src={image}
-                    alt={`${title} image`}
-                    fill
-                    sizes="(max-width: 768px) 8rem, 10rem"
-                    className="object-cover"
-                />
-            </div>
-            
-            <div className="flex min-w-0 flex-1 flex-col">
-                <div className="flex flex-col items-start justify-center">
-                    <h1 className="text-2xl">{title}</h1>
-                    {subtitle && (
-                        <h2 className="text-xl text-gray-400">{subtitle}</h2>
-                    )}
-                    {role && (
-                        <p className="text-md text-gray-500">{role}</p>
-                    )}
-                </div>
-                
-                {isOpen && (
-                    <div className="mt-4 flex flex-col items-start justify-center">
-                        <Description description={description}/>
-                        <ModuleLinks links={normalizedLinks}/>
+            <div className="flex w-full min-w-0 flex-col items-start justify-center">
+                <div className="flex w-full min-w-0 flex-row items-start gap-6">
+                    <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[2.5rem]">
+                        <Image
+                            src={image}
+                            alt={`${title} image`}
+                            fill
+                            sizes="(max-width: 768px) 8rem, 10rem"
+                            className="object-cover"
+                        />
                     </div>
-                )}
+
+                    <div className="min-w-0 flex-1">
+                        <h1 className="wrap-break-word text-2xl">{title}</h1>
+                        {subtitle && (
+                            <h2 className="wrap-break-word text-lg text-gray-400">{subtitle}</h2>
+                        )}
+                        {role && (
+                            <p className="wrap-break-word text-sm text-gray-500">{role}</p>
+                        )}
+                    </div>
+                </div>
+
+                <AnimatePresence initial={false}>
+                    {isOpen && (
+                        <motion.div
+                            initial={{height: 0, opacity: 0}}
+                            animate={{height: "auto", opacity: 1}}
+                            exit={{height: 0, opacity: 0}}
+                            transition={{duration: 0.25, ease: "easeInOut"}}
+                            className="w-full overflow-hidden"
+                        >
+                            <div className="mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-12">
+                                <Description description={description}/>
+                                <ModuleLinks links={normalizedLinks}/>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
+                    <Image
+                        src="/down-arrow.png"
+                        alt="down arrow"
+                        width={32}
+                        height={32}
+                        className={`mx-auto block transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    />
+                </div>
             </div>
         </div>
-	);
+    );
 }
