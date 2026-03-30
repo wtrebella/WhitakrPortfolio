@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto_Slab, Fugaz_One } from "next/font/google";
+import { Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import Footer from "@/components/Footer";
@@ -13,6 +13,9 @@ const robotoSlab = Roboto_Slab({
 export const metadata: Metadata = {
     title: "Whitaker Trebella",
     description: "Portfolio of games, apps, music, and websites",
+    icons: {
+        icon: "/icon.png"
+    }
 };
 
 export default function RootLayout({
