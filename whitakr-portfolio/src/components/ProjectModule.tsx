@@ -65,7 +65,7 @@ function Description({ description }: { description: string }) {
     );
 }
 
-function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
+function ModuleLinks({ links, shouldLoadEmbeds }: { links: NormalizedModuleLink[]; shouldLoadEmbeds: boolean }) {
     if (links.length === 0) return null;
 
     const textLinks = links.filter(link => !link.youTubeEmbedUrl);
@@ -93,14 +93,18 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
                 .filter(link => link.youTubeEmbedUrl)
                 .map((link, index) => (
                     <div key={`${link.href}-${index}`} className="flex w-full min-w-0 px-4 pt-2 pb-0 md:pt-4 flex-col">
-                        <iframe
-                            src={link.youTubeEmbedUrl!}
-                            title={link.label}
-                            className="block aspect-video w-full rounded-md"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        />
+                        {shouldLoadEmbeds ? (
+                            <iframe
+                                src={link.youTubeEmbedUrl!}
+                                title={link.label}
+                                className="block aspect-video w-full rounded-md"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                            />
+                            ) : (
+                                <div className="block aspect-video w-full rounded-md bg-black/5" />
+                            )}
                     </div>
                 ))}
         </div>
@@ -123,6 +127,7 @@ export default function ProjectModule(
     }: ProjectModuleProps)
 {
         const [isOpen, setIsOpen] = useState(false);
+        const [shouldLoadEmbeds, setShouldLoadEmbeds] = useState(false);
         const moduleRef = useRef<HTMLDivElement | null>(null);
         const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
 
@@ -146,6 +151,9 @@ export default function ProjectModule(
                 bg-(--color-2)
                 select-none"
                  onClick={() => setIsOpen(!isOpen)}
+                 onMouseEnter={() => setShouldLoadEmbeds(true)}
+                 onTouchStart={() => setShouldLoadEmbeds(true)}
+                 onFocus={() => setShouldLoadEmbeds(true)}
                  ref={moduleRef}
             >
                 <div className="flex w-full min-w-0 flex-col items-start justify-center">
@@ -197,7 +205,7 @@ export default function ProjectModule(
                         >
                             <div className="mt-2 md:mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-5 md:pb-6">
                                 <Description description={description}/>
-                                <ModuleLinks links={normalizedLinks}/>
+                                <ModuleLinks links={normalizedLinks} shouldLoadEmbeds={shouldLoadEmbeds}/>
                                 {image && (
                                     <div className="relative mt-4 aspect-video w-full overflow-hidden">
                                         <Image

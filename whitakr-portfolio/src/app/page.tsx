@@ -120,7 +120,7 @@ export default function Home() {
 
                 <ProjectModule
                     title="Did The Bears Win?"
-                    description="A fun little page to celebreate the Chicago Bears. I made this while learning web dev."
+                    description="A fun little page to celebreate the Chicago Bears. During the football season it's all about if they won they're last game. During the off-season it gives a summary of how the season went. I made this while learning web dev."
                     role="Full Stack Web Development"
                     icon="/icon-didTheBearsWin.png"
                     image="/didTheBearsWin.png"
