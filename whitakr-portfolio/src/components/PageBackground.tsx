@@ -12,13 +12,13 @@ export default function PageBackground()
         >
             <defs>
                 <linearGradient id="page-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
-                    <stop offset="0%" stopColor="var(--svg-bg)" />
-                    <stop offset="100%" stopColor="var(--svg-bg-2)" />
+                    <stop offset="0%" stopColor="var(--color-2)" />
+                    <stop offset="100%" stopColor="var(--color-2)" />
                 </linearGradient>
 
                 <linearGradient id="stroke-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
-                    <stop offset="0%" stopColor="var(--svg-stroke)" />
-                    <stop offset="100%" stopColor="var(--svg-stroke-2)" />
+                    <stop offset="0%" stopColor="var(--color-1)" />
+                    <stop offset="100%" stopColor="var(--color-1)" />
                 </linearGradient>
 
                 <pattern

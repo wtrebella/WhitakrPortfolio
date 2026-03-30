@@ -106,6 +106,10 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
     );
 }
 
+/*bg-linear-to-t
+from-(--project-module-bg)
+to-(--project-module-bg-2)"*/
+
 export default function ProjectModule(
     {
         title,
@@ -124,19 +128,17 @@ export default function ProjectModule(
         return (
             <div className="
                 relative
-                mt-6
+                mt-8
                 w-full
                 max-w-2xl
                 overflow-hidden
                 rounded-[3.7rem]
+                outline-(--color-1)
+                outline-2
                 p-7
-                drop-shadow-xs
-                shadow-md
                 scroll-mb-24
-                select-none
-                bg-linear-to-t
-                from-(--project-module-bg)
-                to-(--project-module-bg-2)"
+                bg-(--color-2)
+                select-none"
                  onClick={() => setIsOpen(!isOpen)}
                  ref={moduleRef}
             >

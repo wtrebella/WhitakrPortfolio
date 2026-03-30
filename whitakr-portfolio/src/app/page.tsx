@@ -2,8 +2,8 @@ import ProjectModule from "@/components/ProjectModule";
 
 export default function Home() {
 	return (
-        <div className="min-h-full flex flex-col items-center justify-center p-12">
-            <div className="mt-4 flex w-full max-w-2xl flex-col items-stretch">
+        <div className="w-full flex flex-col items-center px-12 py-0">
+            <div className="mb-8 flex w-full max-w-2xl flex-col items-stretch">
                 <ProjectModule
                     title="Piloteer"
                     subtitle="A Game About Learning to Fly"
