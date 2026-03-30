@@ -27,7 +27,7 @@ export const metadata: Metadata = {
                 alt: "Whitaker Trebella"
             }
         ]
-    }
+    },
     icons: {
         icon: "/icon.png"
     }
