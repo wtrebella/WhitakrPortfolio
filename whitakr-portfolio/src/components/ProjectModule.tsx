@@ -53,11 +53,12 @@ function normalizeLinks(links: ModuleLink[]): NormalizedModuleLink[]
 }
 
 function Description({ description }: { description: string }) {
-    const lines = description.split(/\r?\n/);
+    const lines = description.replace(/\\n/g, "\n").split(/\r?\n/);
+
     return (
         <>
             {lines.map((line, index) => line
-                ? (<p key={index} className="text-(--color-4) py-2 px-1 text-sm wrap-break-word">{line}</p>)
+                ? (<p key={index} className="text-(--color-4) py-2 px-1 text-xs md:text-sm wrap-break-word">{line}</p>)
                 : (<div key={index} className="h-4" aria-hidden="true"/>)
             )}
         </>
@@ -76,14 +77,14 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
                     <React.Fragment key={`${link.href}-${index}`}>
                         <Link
                             href={link.href}
-                            className="text-(--color-5) hover:underline bold"
+                            className="text-(--color-5) hover:underline bold text-xs md:text-md"
                             onClick={e => e.stopPropagation()}
                             {...link.linkProps}
                         >
                             {link.label}
                         </Link>
 
-                        {index < textLinks.length - 1 && <span className="text-(--color-1) text-md mx-3">•</span>}
+                        {index < textLinks.length - 1 && <span className="text-(--color-1) text-m mx-3">•</span>}
                     </React.Fragment>
                 ))}
             </div>
@@ -91,7 +92,7 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
             {links
                 .filter(link => link.youTubeEmbedUrl)
                 .map((link, index) => (
-                    <div key={`${link.href}-${index}`} className="mt-2 flex w-full min-w-0 flex-col gap-2">
+                    <div key={`${link.href}-${index}`} className="flex w-full min-w-0 p-4 flex-col gap-2">
                         <iframe
                             src={link.youTubeEmbedUrl!}
                             title={link.label}
@@ -128,14 +129,17 @@ export default function ProjectModule(
         return (
             <div className="
                 relative
-                mt-8
+                mt-6
+                md:mt-8
                 w-full
                 max-w-2xl
                 overflow-hidden
-                rounded-[3.7rem]
+                rounded-[2.3rem]
+                md:rounded-[3.7rem]
                 outline-(--color-1)
                 outline-2
-                p-7
+                p-4
+                md:p-7
                 scroll-mb-24
                 bg-(--color-2)
                 select-none"
@@ -143,8 +147,8 @@ export default function ProjectModule(
                  ref={moduleRef}
             >
                 <div className="flex w-full min-w-0 flex-col items-start justify-center">
-                    <div className="flex w-full min-w-0 flex-row items-start gap-6">
-                        <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[2.5rem]">
+                    <div className="flex w-full min-w-0 flex-row items-start gap-4 md:gap-6">
+                        <div className="relative aspect-square w-20 md:w-28 shrink-0 self-start overflow-hidden rounded-3xl md:rounded-[2.5rem]">
                             <Image
                                 src={icon}
                                 alt={`${title} icon`}
@@ -156,12 +160,12 @@ export default function ProjectModule(
                         </div>
 
                         <div className="min-w-0 flex-1">
-                            <h1 className="wrap-break-word text-2xl text-(--color-4)">{title}</h1>
+                            <h1 className="wrap-break-word text-md md:text-2xl text-(--color-4)">{title}</h1>
                             {subtitle && (
-                                <h2 className="wrap-break-word text-lg text-(--color-4)">{subtitle}</h2>
+                                <h2 className="wrap-break-word text-[0.7rem] md:text-lg text-(--color-4)">{subtitle}</h2>
                             )}
                             {role && (
-                                <p className="wrap-break-word text-sm text-(--color-4)">{role}</p>
+                                <p className="wrap-break-word text-[0.6rem] md:text-sm text-(--color-4)">{role}</p>
                             )}
                         </div>
                     </div>
@@ -193,7 +197,7 @@ export default function ProjectModule(
                                 <Description description={description}/>
                                 <ModuleLinks links={normalizedLinks}/>
                                 {image && (
-                                    <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl">
+                                    <div className="relative mt-4 aspect-video w-full overflow-hidden">
                                         <Image
                                             src={image}
                                             alt={title}
@@ -207,13 +211,13 @@ export default function ProjectModule(
                     )}
                 </AnimatePresence>
 
-                <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
+                <div className="pointer-events-none absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2">
                     <Image
                         src="/down-arrow.svg"
                         alt="down arrow"
-                        width={32}
-                        height={32}
-                        className={`mx-auto block transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                        width={20}
+                        height={20}
+                        className={`mx-auto block h-5 w-5 md:h-8 md:w-8 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                     />
                 </div>
             </div>

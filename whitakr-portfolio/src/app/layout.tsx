@@ -6,11 +6,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PageBackground from "@/components/PageBackground";
 
-const fugaz = Fugaz_One({
-    weight: "400",
-    subsets: ["latin"]
-})
-
 const robotoSlab = Roboto_Slab({
     subsets: ["latin"],
 });

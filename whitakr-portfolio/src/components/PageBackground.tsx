@@ -17,8 +17,8 @@ export default function PageBackground()
                 </linearGradient>
 
                 <linearGradient id="stroke-gradient" x1="50%" y1="0%" x2="50%" y2="100%">
-                    <stop offset="0%" stopColor="var(--color-1)" />
-                    <stop offset="100%" stopColor="var(--color-1)" />
+                    <stop offset="0%" stopColor="var(--color-6)" />
+                    <stop offset="100%" stopColor="var(--color-6)" />
                 </linearGradient>
 
                 <pattern

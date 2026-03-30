@@ -8,7 +8,7 @@ export default function Home() {
                     title="Piloteer"
                     subtitle="A Game About Learning to Fly"
                     role="Design • Engineering • Art • Sound Design • Music • Writing"
-                    description="In Piloteer, a whimsical and serenely challenging physics-based game about learning to fly, a renowned inventor is determined to overcome the stigma associated with flying a jetpack and convince the world that jetpacks should be revered by all. The UI art is done by the wonderful Mike Berg of We Heart Games."
+                    description="In Piloteer, a whimsical and serenely challenging physics-based game about learning to fly, a renowned inventor is determined to overcome the stigma associated with flying a jetpack and convince the world that jetpacks should be revered by all.\nThe UI art is done by the wonderful Mike Berg of We Heart Games."
                     icon="/icon-piloteer.png"
                     links={[
                         {
@@ -64,7 +64,7 @@ export default function Home() {
                     title="Polymer"
                     subtitle="A strategic shape-creating game"
                     role="Design • Engineering • Art • Sound Design • Music"
-                    description="Use your right and left brain to delve into creativity and strategy while sliding columns and rows to create polymers that are uniquely yours. Be clever and inventive to form the most visually appealing, high-scoring polymers, all while incorporating different tactics into each of the three game modes."
+                    description="Use your right and left brain to delve into creativity and strategy while sliding columns and rows to create polymers that are uniquely yours. Be clever and inventive to form the most visually appealing, high-scoring polymers, all while incorporating different tactics into each of the three game modes. Polymer is unfortunately currently unavailable in stores."
                     icon="/icon-polymer.jpg"
                     links={[
                         {

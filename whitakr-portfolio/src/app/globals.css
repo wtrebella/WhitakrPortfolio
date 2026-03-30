@@ -28,12 +28,17 @@
     --color-3 is header background
     --color-4 is module text
 */}
+@theme {
+    --text-md: 1rem;
+}
+
 :root {
-    --color-1: #e07a5f; /* lines */
-    --color-2: #f4f1de; /* page background & header text */
-    --color-3: #3a3e59; /* header background */
-    --color-4: #0a0d32; /* project module text */
-    --color-5: #e65c36; /* project module links */
+    --color-1: #e07a5f;   /* outlines lines */
+    --color-2: #f4f1de;   /* page background & header text */
+    --color-3: #3a3e59;   /* header background */
+    --color-4: #0a0d32;   /* project module text */
+    --color-5: #e65c36;   /* project module links */
+    --color-6: #e07a5f33; /* background lines */
     --background: #eee;
     --foreground: #000;
     --svg-bg: #ece6e6;
