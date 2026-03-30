@@ -64,7 +64,7 @@ export default function Home() {
                     title="Polymer"
                     subtitle="A strategic shape-creating game"
                     role="Design • Engineering • Art • Sound Design • Music"
-                    description="Polymer is what you get when you combine the logic of Rubik's Cube, the sliding mechanism of Trism, and the creativity of Lego. Use your right and left brain to delve into creativity and strategy while sliding columns and rows to create polymers that are uniquely yours. This can prove challenging because as you slide pieces, others get shifted, disrupting polymers in the process of being formed. Be clever and inventive to form the most visually appealing, high-scoring polymers, all while incorporating different tactics into each of the three game modes."
+                    description="Use your right and left brain to delve into creativity and strategy while sliding columns and rows to create polymers that are uniquely yours. Be clever and inventive to form the most visually appealing, high-scoring polymers, all while incorporating different tactics into each of the three game modes."
                     icon="/icon-polymer.jpg"
                     links={[
                         {
@@ -103,6 +103,10 @@ export default function Home() {
                     description="SoundForest is a mini music that allows you to instantly compose a song using a collection of musical creatures."
                     icon="/icon-soundforest.png"
                     links={[
+                        {
+                            href: "https://soundforestapp.itch.io/",
+                            label: "itch.io"
+                        },
                         {
                             href: "https://apps.apple.com/us/app/soundforest/id1194745290",
                             label: "App Store"

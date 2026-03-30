@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Raleway, Roboto_Slab } from "next/font/google";
+import { Roboto_Slab, Fugaz_One } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PageBackground from "@/components/PageBackground";
 
-const raleway = Raleway({
-    subsets: ["latin"],
+const fugaz = Fugaz_One({
+    weight: "400",
+    subsets: ["latin"]
 })
 
 const robotoSlab = Roboto_Slab({
@@ -31,6 +32,7 @@ export default function RootLayout({
                     <PageBackground/>
 
                     <Header/>
+                    <div className="h-20" />
                     <main className="grow">
                         {children}
                     </main>

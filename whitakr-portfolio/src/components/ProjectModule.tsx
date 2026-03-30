@@ -76,7 +76,7 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
                     <React.Fragment key={`${link.href}-${index}`}>
                         <Link
                             href={link.href}
-                            className="text-(--svg-bg) hover:underline bold"
+                            className="text-(--color-1) hover:underline bold"
                             onClick={e => e.stopPropagation()}
                             {...link.linkProps}
                         >
@@ -156,12 +156,12 @@ export default function ProjectModule(
                         </div>
 
                         <div className="min-w-0 flex-1">
-                            <h1 className="wrap-break-word text-2xl">{title}</h1>
+                            <h1 className="wrap-break-word text-2xl text-(--color-3)">{title}</h1>
                             {subtitle && (
-                                <h2 className="wrap-break-word text-lg text-gray-400">{subtitle}</h2>
+                                <h2 className="wrap-break-word text-lg text-(--color-3)">{subtitle}</h2>
                             )}
                             {role && (
-                                <p className="wrap-break-word text-sm text-gray-500">{role}</p>
+                                <p className="wrap-break-word text-sm text-(--color-3)">{role}</p>
                             )}
                         </div>
                     </div>
@@ -189,10 +189,9 @@ export default function ProjectModule(
                                 }
                             }}
                         >
-                            <div className="mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-12">
+                            <div className="mt-4 flex w-full min-w-0 flex-col text-(--color-3) items-start justify-center pb-12">
                                 <Description description={description}/>
                                 <ModuleLinks links={normalizedLinks}/>
-                                <hr className="w-full border-t border-gray-300" />
                                 {image && (
                                     <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl">
                                         <Image
@@ -200,7 +199,7 @@ export default function ProjectModule(
                                             alt={title}
                                             fill
                                             sizes="(max-width: 768px) 100vw, 42rem"
-                                            className="object-contain"
+                                            className="object-cover"
                                         />
                                     </div>                                )}
                             </div>
