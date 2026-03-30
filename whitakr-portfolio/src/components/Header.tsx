@@ -1,7 +1,5 @@
 ﻿import Link from "next/link";
 
-const headerLinkStyle: string = "m-8"
-
 export default function Header() {
     return (
         <header className="m-8 flex flex-col items-center justify-center">

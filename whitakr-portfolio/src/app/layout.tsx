@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import React from "react";
-{/*import Footer from "@/components/Footer";*/}
-{/*import Header from "@/components/Header";*/}
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import PageBackground from "@/components/PageBackground";
 
 const robotoSlab = Roboto_Slab({
@@ -26,7 +26,7 @@ export default function RootLayout({
                 <div className="page-bg">
                     <PageBackground/>
 
-                    {/*<Header/>*/}
+                    <Header/>
                     <main className="grow">
                         {children}
                     </main>

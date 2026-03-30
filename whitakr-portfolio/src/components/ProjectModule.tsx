@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {useRef, useMemo, useState} from "react";
 import {getLinkProps, getYouTubeEmbedUrl} from "@/lib/url";
+import React from "react";
 
 type ModuleLink = {
     href: string;
@@ -66,31 +67,41 @@ function Description({ description }: { description: string }) {
 function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
     if (links.length === 0) return null;
 
+    const textLinks = links.filter(link => !link.youTubeEmbedUrl);
+
     return (
-        <>
-            {links.map((link, index) => (
-                <div key={`${link.href}-${index}`} className="mt-2 flex w-full min-w-0 flex-col gap-2">
-                    {link.youTubeEmbedUrl ? (
+        <div className="w-full flex flex-col justify-center items-center">
+            <div className="p-6 flex w-full flex-wrap justify-center items-center">
+                {textLinks.map((link, index) => (
+                    <React.Fragment key={`${link.href}-${index}`}>
+                        <Link
+                            href={link.href}
+                            className="text-(--svg-bg) hover:underline bold"
+                            {...link.linkProps}
+                        >
+                            {link.label}
+                        </Link>
+
+                        {index < textLinks.length - 1 && <span className="text-xl mx-3">•</span>}
+                    </React.Fragment>
+                ))}
+            </div>
+
+            {links
+                .filter(link => link.youTubeEmbedUrl)
+                .map((link, index) => (
+                    <div key={`${link.href}-${index}`} className="mt-2 flex w-full min-w-0 flex-col gap-2">
                         <iframe
-                            src={link.youTubeEmbedUrl}
+                            src={link.youTubeEmbedUrl!}
                             title={link.label}
                             className="block aspect-video w-full rounded-md"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
                         />
-                    ) : (
-                        <Link
-                            href={link.href}
-                            className="break-all text-blue-500 hover:underline"
-                            {...link.linkProps}
-                        >
-                            {link.label}
-                        </Link>
-                    )}
-                </div>
-            ))}
-        </>
+                    </div>
+                ))}
+        </div>
     );
 }
 
@@ -105,51 +116,51 @@ export default function ProjectModule(
         links = []
     }: ProjectModuleProps)
 {
-    const [isOpen, setIsOpen] = useState(false);
-    const moduleRef = useRef<HTMLDivElement | null>(null);
-    const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
+        const [isOpen, setIsOpen] = useState(false);
+        const moduleRef = useRef<HTMLDivElement | null>(null);
+        const normalizedLinks = useMemo(() => normalizeLinks(links), [links]);
 
-    return (
-        <div className="
-            relative
-            mt-6
-            w-full
-            max-w-2xl
-            overflow-hidden
-            rounded-[3.7rem]
-            p-7
-            drop-shadow-xs
-            shadow-md
-            scroll-mb-24
-            bg-linear-to-t
-            from-(--project-module-bg)
-            to-(--project-module-bg-2)"
-             onClick={() => setIsOpen(!isOpen)}
-             ref={moduleRef}
-        >
-            <div className="flex w-full min-w-0 flex-col items-start justify-center">
-                <div className="flex w-full min-w-0 flex-row items-start gap-6">
-                    <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[2.5rem]">
-                        <Image
-                            src={icon}
-                            alt={`${title} icon`}
-                            fill
-                            priority
-                            sizes="(max-width: 768px) 8rem, 10rem"
-                            className="object-cover"
-                        />
-                    </div>
+        return (
+            <div className="
+                relative
+                mt-6
+                w-full
+                max-w-2xl
+                overflow-hidden
+                rounded-[3.7rem]
+                p-7
+                drop-shadow-xs
+                shadow-md
+                scroll-mb-24
+                bg-linear-to-t
+                from-(--project-module-bg)
+                to-(--project-module-bg-2)"
+                 onClick={() => setIsOpen(!isOpen)}
+                 ref={moduleRef}
+            >
+                <div className="flex w-full min-w-0 flex-col items-start justify-center">
+                    <div className="flex w-full min-w-0 flex-row items-start gap-6">
+                        <div className="relative aspect-square w-32 shrink-0 self-start overflow-hidden rounded-[2.5rem]">
+                            <Image
+                                src={icon}
+                                alt={`${title} icon`}
+                                fill
+                                priority
+                                sizes="(max-width: 768px) 8rem, 10rem"
+                                className="object-cover"
+                            />
+                        </div>
 
-                    <div className="min-w-0 flex-1">
-                        <h1 className="wrap-break-word text-2xl">{title}</h1>
-                        {subtitle && (
-                            <h2 className="wrap-break-word text-lg text-gray-400">{subtitle}</h2>
-                        )}
-                        {role && (
-                            <p className="wrap-break-word text-sm text-gray-500">{role}</p>
-                        )}
+                        <div className="min-w-0 flex-1">
+                            <h1 className="wrap-break-word text-2xl">{title}</h1>
+                            {subtitle && (
+                                <h2 className="wrap-break-word text-lg text-gray-400">{subtitle}</h2>
+                            )}
+                            {role && (
+                                <p className="wrap-break-word text-sm text-gray-500">{role}</p>
+                            )}
+                        </div>
                     </div>
-                </div>
 
                 <AnimatePresence initial={false}>
                     {isOpen && (

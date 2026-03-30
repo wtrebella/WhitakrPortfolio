@@ -4,10 +4,10 @@
 :root {
     --background: #000;
     --foreground: #000;
-    --svg-bg: #333D79;
-    --svg-bg-2: #333D79;
-    --svg-stroke: #444E8A;
-    --svg-stroke-2: #444E8A;
+    --svg-bg: rgb(95 101 143);
+    --svg-bg-2: rgb(57 62 108);
+    --svg-stroke: rgba(0, 0, 0, 0.1);
+    --svg-stroke-2: rgba(0, 0, 0, 0.2);
     --project-module-bg: #eee;
     --project-module-bg-2: #fff;
 }

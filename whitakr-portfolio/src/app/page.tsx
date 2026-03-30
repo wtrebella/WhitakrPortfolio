@@ -3,15 +3,26 @@ import ProjectModule from "@/components/ProjectModule";
 export default function Home() {
 	return (
         <div className="min-h-full flex flex-col items-center justify-center p-12">
-            <h1 className="text-4xl">Whitaker Trebella</h1>
             <div className="mt-4 flex w-full max-w-2xl flex-col items-stretch">
                 <ProjectModule
                     title="Piloteer"
                     subtitle="A Game About Learning to Fly"
                     role="Designer, Engineer, Artist, Sound Designer, Composer, Writer"
-                    description="In Piloteer, a whimsical and serenely challenging physics-based game about learning to fly, a renowned inventor is determined to overcome the stigma associated with flying a jetpack and convince the world that jetpacks should be revered by all. The UI art is done by the wonderful Mike Berg of https://weheart.games/."
+                    description="In Piloteer, a whimsical and serenely challenging physics-based game about learning to fly, a renowned inventor is determined to overcome the stigma associated with flying a jetpack and convince the world that jetpacks should be revered by all. The UI art is done by the wonderful Mike Berg of We Heart Games."
                     icon="/icon-piloteer.png"
                     links={[
+                        {
+                            href: "https://apps.apple.com/us/app/piloteer/id932248553",
+                            label: "App Store"
+                        },
+                        {
+                            href: "https://store.steampowered.com/app/355910/Piloteer/",
+                            label: "Steam"
+                        },
+                        {
+                            href: "https://weheart.games",
+                            label: "We Heart Games (UI Art)"
+                        },
                         {
                             href: "https://www.youtube.com/watch?v=CfvlH4exf54",
                             label: "Piloteer Trailer",
