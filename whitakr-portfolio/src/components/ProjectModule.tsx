@@ -57,7 +57,7 @@ function Description({ description }: { description: string }) {
     return (
         <>
             {lines.map((line, index) => line
-                ? (<p key={index} className="text-md wrap-break-word">{line}</p>)
+                ? (<p key={index} className="text-sm wrap-break-word">{line}</p>)
                 : (<div key={index} className="h-4" aria-hidden="true"/>)
             )}
         </>
@@ -77,6 +77,7 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
                         <Link
                             href={link.href}
                             className="text-(--svg-bg) hover:underline bold"
+                            onClick={e => e.stopPropagation()}
                             {...link.linkProps}
                         >
                             {link.label}
@@ -132,6 +133,7 @@ export default function ProjectModule(
                 drop-shadow-xs
                 shadow-md
                 scroll-mb-24
+                select-none
                 bg-linear-to-t
                 from-(--project-module-bg)
                 to-(--project-module-bg-2)"
@@ -188,6 +190,7 @@ export default function ProjectModule(
                             <div className="mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-12">
                                 <Description description={description}/>
                                 <ModuleLinks links={normalizedLinks}/>
+                                <hr className="w-full border-t border-gray-300" />
                                 {image && (
                                     <div className="relative mt-4 aspect-video w-full overflow-hidden rounded-2xl">
                                         <Image
