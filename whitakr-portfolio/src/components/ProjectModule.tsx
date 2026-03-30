@@ -57,7 +57,7 @@ function Description({ description }: { description: string }) {
     return (
         <>
             {lines.map((line, index) => line
-                ? (<p key={index} className="text-sm wrap-break-word">{line}</p>)
+                ? (<p key={index} className="text-(--color-4) py-2 px-1 text-sm wrap-break-word">{line}</p>)
                 : (<div key={index} className="h-4" aria-hidden="true"/>)
             )}
         </>
@@ -76,14 +76,14 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
                     <React.Fragment key={`${link.href}-${index}`}>
                         <Link
                             href={link.href}
-                            className="text-(--color-1) hover:underline bold"
+                            className="text-(--color-5) hover:underline bold"
                             onClick={e => e.stopPropagation()}
                             {...link.linkProps}
                         >
                             {link.label}
                         </Link>
 
-                        {index < textLinks.length - 1 && <span className="text-xl mx-3">•</span>}
+                        {index < textLinks.length - 1 && <span className="text-(--color-1) text-md mx-3">•</span>}
                     </React.Fragment>
                 ))}
             </div>
@@ -156,12 +156,12 @@ export default function ProjectModule(
                         </div>
 
                         <div className="min-w-0 flex-1">
-                            <h1 className="wrap-break-word text-2xl text-(--color-3)">{title}</h1>
+                            <h1 className="wrap-break-word text-2xl text-(--color-4)">{title}</h1>
                             {subtitle && (
-                                <h2 className="wrap-break-word text-lg text-(--color-3)">{subtitle}</h2>
+                                <h2 className="wrap-break-word text-lg text-(--color-4)">{subtitle}</h2>
                             )}
                             {role && (
-                                <p className="wrap-break-word text-sm text-(--color-3)">{role}</p>
+                                <p className="wrap-break-word text-sm text-(--color-4)">{role}</p>
                             )}
                         </div>
                     </div>
@@ -189,7 +189,7 @@ export default function ProjectModule(
                                 }
                             }}
                         >
-                            <div className="mt-4 flex w-full min-w-0 flex-col text-(--color-3) items-start justify-center pb-12">
+                            <div className="mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-12">
                                 <Description description={description}/>
                                 <ModuleLinks links={normalizedLinks}/>
                                 {image && (
@@ -209,7 +209,7 @@ export default function ProjectModule(
 
                 <div className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2">
                     <Image
-                        src="/down-arrow.png"
+                        src="/down-arrow.svg"
                         alt="down arrow"
                         width={32}
                         height={32}

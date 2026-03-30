@@ -1,10 +1,39 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-:root {
+{/* GREEN AND ORANGE */}
+{/*
     --color-1: #e07a5f;
     --color-2: #f4f1de;
-    --color-3: #3d405b;
+    --color-3: #3d405b;*/
+}
+
+{/* GREEN-BLUE AND YELLOW */}
+{/*
+    --color-1: #156064;
+    --color-2: #f8e16c;
+    --color-3: #156064;
+*/}
+
+{/* GREEN-BLUE AND YELLOW */}
+{/*
+    --color-1: #156064;
+    --color-2: #f8e16c;
+    --color-3: #156064;
+*/}
+
+{/*
+    --color-1 is for lines
+    --color-2 is page background and header text
+    --color-3 is header background
+    --color-4 is module text
+*/}
+:root {
+    --color-1: #e07a5f; /* lines */
+    --color-2: #f4f1de; /* page background & header text */
+    --color-3: #3a3e59; /* header background */
+    --color-4: #0a0d32; /* project module text */
+    --color-5: #e65c36; /* project module links */
     --background: #eee;
     --foreground: #000;
     --svg-bg: #ece6e6;

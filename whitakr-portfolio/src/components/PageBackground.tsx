@@ -23,8 +23,9 @@ export default function PageBackground()
 
                 <pattern
                     id="bg-pattern-mask"
-                    width="87"
-                    height="50.232"
+                    width={69.6 / 0.9}
+                    height={40.1856 / 0.9}
+                    viewBox={"0 0 87 50.232"}
                     patternUnits="userSpaceOnUse"
                 >
                     <rect width="87" height="50.232" fill="black" />
