@@ -72,7 +72,7 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
 
     return (
         <div className="w-full flex flex-col justify-center items-center">
-            <div className="p-6 flex w-full flex-wrap justify-center items-center">
+            <div className="px-2 pt-0 pb-1 md:p-3 flex w-full flex-wrap justify-center items-center">
                 {textLinks.map((link, index) => (
                     <React.Fragment key={`${link.href}-${index}`}>
                         <Link
@@ -92,7 +92,7 @@ function ModuleLinks({ links }: { links: NormalizedModuleLink[] }) {
             {links
                 .filter(link => link.youTubeEmbedUrl)
                 .map((link, index) => (
-                    <div key={`${link.href}-${index}`} className="flex w-full min-w-0 p-4 flex-col gap-2">
+                    <div key={`${link.href}-${index}`} className="flex w-full min-w-0 px-4 pt-2 pb-0 md:pt-4 flex-col">
                         <iframe
                             src={link.youTubeEmbedUrl!}
                             title={link.label}
@@ -132,7 +132,9 @@ export default function ProjectModule(
                 mt-6
                 md:mt-8
                 w-full
-                max-w-2xl
+                max-w-lg
+                md:max-w-2xl
+                mx-auto
                 overflow-hidden
                 rounded-[2.3rem]
                 md:rounded-[3.7rem]
@@ -193,7 +195,7 @@ export default function ProjectModule(
                                 }
                             }}
                         >
-                            <div className="mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-12">
+                            <div className="mt-2 md:mt-4 flex w-full min-w-0 flex-col items-start justify-center pb-5 md:pb-6">
                                 <Description description={description}/>
                                 <ModuleLinks links={normalizedLinks}/>
                                 {image && (
@@ -217,7 +219,7 @@ export default function ProjectModule(
                         alt="down arrow"
                         width={20}
                         height={20}
-                        className={`mx-auto block h-5 w-5 md:h-8 md:w-8 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                        className={`mx-auto block h-5 w-5 md:h-6 md:w-6 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                     />
                 </div>
             </div>

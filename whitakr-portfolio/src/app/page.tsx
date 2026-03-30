@@ -2,7 +2,7 @@ import ProjectModule from "@/components/ProjectModule";
 
 export default function Home() {
 	return (
-        <div className="w-full flex flex-col items-center px-12 py-0">
+        <div className="w-full flex flex-col items-center px-8 py-0">
             <div className="mb-8 flex w-full max-w-2xl flex-col items-stretch">
                 <ProjectModule
                     title="Piloteer"

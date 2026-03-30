@@ -11,8 +11,8 @@ const robotoSlab = Roboto_Slab({
 });
 
 export const metadata: Metadata = {
-    title: "Whitaker Trebella's Portfolio",
-    description: "Portfolio of work, music, and games",
+    title: "Whitaker Trebella",
+    description: "Portfolio of games, apps, music, and websites",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
                     <PageBackground/>
 
                     <Header/>
-                    <div className="h-20" />
+                    <div className="h-12 md:h-20" />
                     <main className="grow">
                         {children}
                     </main>
