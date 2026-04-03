@@ -10,7 +10,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Submit to P4
-        working-directory: ${{ github.workspace }}
+        working-directory: ../../../..
         env:
           COMMIT_MESSAGES: ${{ join(github.event.commits.*.message, ' | ') }}
         run: |
