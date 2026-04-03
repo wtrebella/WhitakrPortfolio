@@ -1,0 +1,12 @@
+name: SubmitToP4Action
+on:
+  push:
+    branches:
+      - main
+permissions: read-all
+jobs:
+  submit_to_p4:
+    name: submit
+    runs-on: self-hosted
+    steps:
+    - run: echo "Hey mother fuckers!"
