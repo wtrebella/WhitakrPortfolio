@@ -9,4 +9,4 @@ jobs:
     name: submit
     runs-on: self-hosted
     steps:
-    - run: echo "Hey mother fuckers!"
+    - run: pwd
