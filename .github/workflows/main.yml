@@ -14,10 +14,9 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ join(github.event.commits.*.message, ' | ') }}
         run: |
+          pwd
           set -e
-        
           p4 reconcile -ead ./...
-        
           if p4 opened ./... | grep -q .; then
             p4 submit -d "[WhitakrPortfolio] $COMMIT_MESSAGES"
           else
