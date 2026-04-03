@@ -9,4 +9,17 @@ jobs:
     name: submit
     runs-on: self-hosted
     steps:
-    - run: pwd
+      - name: Submit to P4
+        working-directory: ${{ github.workspace }}
+        env:
+          COMMIT_MESSAGES: ${{ join(github.event.commits.*.message, ' | ') }}
+        run: |
+          set -e
+        
+          p4 reconcile -ead ./...
+        
+          if p4 opened ./... | grep -q .; then
+            p4 submit -d "[WhitakrPortfolio] $COMMIT_MESSAGES"
+          else
+            echo "Nothing to submit"
+          fi
